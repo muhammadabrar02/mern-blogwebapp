@@ -10,17 +10,17 @@ export default function CreatePostPage() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [loading, setLoading] = useState(false)
-  const [token, setToken] = useState<string | null>(null)
+  // const [token, setToken] = useState<string | null>(null)
   const [userId, setUserId] = useState<string | null>(null)
 
   useEffect(() => {
     const t = localStorage.getItem('token')
-    setToken(t)
     if (t) {
-      const decodedToken: any = jwtDecode(t) // Decode the JWT token to get user info
-      setUserId(decodedToken.userId) // Assuming the userId is stored as `userId` in the token
+      const decodedToken: any = jwtDecode(t)
+      setUserId(decodedToken.userId)
     }
   }, [])
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -93,11 +93,10 @@ export default function CreatePostPage() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 rounded-md text-white font-semibold transition ${
-              loading
+            className={`w-full py-3 rounded-md text-white font-semibold transition ${loading
                 ? 'bg-blue-400 cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700'
-            }`}
+              }`}
           >
             {loading ? 'Posting...' : '🚀 Submit Post'}
           </button>

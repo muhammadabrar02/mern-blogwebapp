@@ -36,8 +36,10 @@ export default function SignupPage() {
         alert(`Sign-up failed: ${data.error}`);
       }
     } catch (error) {
+      console.error('Signup error:', error);
       alert('An error occurred during sign-up.');
-    } finally {
+    }
+    finally {
       setLoading(false);
     }
   };
